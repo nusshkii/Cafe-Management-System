@@ -1,6 +1,9 @@
 class EmployeesController < ApplicationController
     # CallBacks
     before_action :set_employee, only: [:show, :edit, :update, :destroy]
+    before_action :check_login
+    authorize_resource
+  
   
     # the index action 
     def index 
