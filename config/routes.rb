@@ -55,6 +55,13 @@ Rails.application.routes.draw do
   patch '/assignments/:id', to: 'assignments#update'
   delete '/assignments/:id', to: 'assignments#destroy'  
   
+  # Job Routes
+  get '/jobs', to: 'jobs#index', as: 'jobs' 
+  post '/jobs', to: 'jobs#create' 
+  get '/jobs/new', to: 'jobs#new', as: 'new_job'
+  get 'jobs/:id/edit' ,to: 'jobs#edit', as: 'edit_job' 
+  patch '/jobs/:id', to: 'jobs#update', as: 'job'
+  delete '/jobs/:id', to: 'jobs#destroy'
   
 end
 
