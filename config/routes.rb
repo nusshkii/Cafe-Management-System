@@ -62,6 +62,22 @@ Rails.application.routes.draw do
   get 'jobs/:id/edit' ,to: 'jobs#edit', as: 'edit_job' 
   patch '/jobs/:id', to: 'jobs#update', as: 'job'
   delete '/jobs/:id', to: 'jobs#destroy'
+
+  # PayGrade Routes
+  get '/pay_grades', to: 'pay_grades#index', as: 'pay_grades'
+  post '/pay_grades', to: 'pay_grades#create'
+  get '/pay_grades/new', to: 'pay_grades#new', as: 'new_pay_grade'
+  get '/pay_grades/:id/edit', to: 'pay_grades#edit', as: 'edit_pay_grade'
+  get '/pay_grades/:id', to: 'pay_grades#show', as: 'pay_grade'
+  patch '/pay_grades/:id', to: 'pay_grades#update'
+  
+  # PayGradeRates Routes
+  get '/pay_grade_rates', to: 'pay_grade_rates#index', as: 'pay_grade_rates'
+  post '/pay_grade_rates', to: 'pay_grade_rates#create'
+  get '/pay_grade_rates/new', to: 'pay_grade_rates#new', as: 'new_pay_grade_rate'
+  get '/pay_grade_rates/:id/edit', to: 'pay_grade_rates#edit', as: 'edit_pay_grade_rate'
+  get '/pay_grade_rates/:id', to: 'pay_grade_rates#show', as: 'pay_grade_rate'
+  patch '/pay_grade_rates/:id', to: 'pay_grade_rates#update'  
   
 end
 
