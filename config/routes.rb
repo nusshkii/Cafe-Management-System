@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   # Routes for regular HTML views go here...
   # Semi-static page routes
+  root 'home#index'
   get 'home', to: 'home#index', as: :home
+  get '/about', to: 'home#about', as: :about
+  get '/contact', to: 'home#contact', as: :contact
+  get '/privacy', to: 'home#privacy', as: :privacy
   
   # Employee Routes
   get '/employees', to: 'employees#index', as: 'employees' 
@@ -73,11 +77,39 @@ Rails.application.routes.draw do
   
   # PayGradeRates Routes
   get '/pay_grade_rates', to: 'pay_grade_rates#index', as: 'pay_grade_rates'
-  post '/pay_grade_rates', to: 'pay_grade_rates#create'
+  post '/pay_grade_rates', to: 'pay_grade_rates#create', as: 'create_pay_grade_rates'
   get '/pay_grade_rates/new', to: 'pay_grade_rates#new', as: 'new_pay_grade_rate'
   get '/pay_grade_rates/:id/edit', to: 'pay_grade_rates#edit', as: 'edit_pay_grade_rate'
   get '/pay_grade_rates/:id', to: 'pay_grade_rates#show', as: 'pay_grade_rate'
-  patch '/pay_grade_rates/:id', to: 'pay_grade_rates#update'  
+  patch '/pay_grade_rates/:id', to: 'pay_grade_rates#update'
+
+  
+  # Shifts Routes
+  get '/shifts', to: 'shifts#index', as: 'shifts'
+  post '/shifts', to: 'shifts#create'
+  get '/shifts/new', to: 'shifts#new', as: 'new_shift'
+  get '/shifts/:id/edit', to: 'shifts#edit', as: 'edit_shift'
+  get '/shifts/:id', to: 'shifts#show', as: 'shift'
+  patch '/shifts/:id', to: 'shifts#update'
+  delete '/shifts/:id', to: 'shifts#destroy'
+  patch '/time_in', to: 'shifts#time_in', as: 'time_in'
+  patch '/time_out', to: 'shifts#time_out', as: 'time_out'
+  get '/time_clock', to: 'shifts#time_clock', as: 'time_clock'
+
+  # ShiftJobs Routes
+  get '/shift_jobs', to: 'shift_jobs#index', as: 'shift_jobs'
+  post '/shift_jobs', to: 'shift_jobs#create'
+  get '/shift_jobs/new', to: 'shift_jobs#new', as: 'new_shift_job'
+  get '/shift_jobs/:id/edit', to: 'shift_jobs#edit', as: 'edit_shift_job'
+  get '/shift_jobs/:id', to: 'shift_jobs#show', as: 'shift_job'
+  patch '/shift_jobs/:id', to: 'shift_jobs#update'
+  delete '/shift_jobs/:id', to: 'shift_jobs#destroy'
+
+  #payrolls
+  get '/store_form', to: 'payrolls#store_form' , as: 'store_form'
+  get '/employee_form' , to: 'payrolls#employee_form',  as:  'employee_form'
+  get '/employee_payroll', to: 'payrolls#employee_payroll', as: 'employee_payroll'
+  get '/store_payroll', to: 'payrolls#store_payroll', as: 'store_payroll'
   
 end
 

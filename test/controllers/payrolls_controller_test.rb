@@ -60,4 +60,7 @@ class PayrollsControllerTest < ActionDispatch::IntegrationTest
   test "should not have generic routes (e.g., no index route)" do
     assert_raise ActionController::UrlGenerationError do get url_for(controller: "payroll", action: "index") end
   end
+
+  ###########
+ 
 end
