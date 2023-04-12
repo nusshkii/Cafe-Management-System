@@ -1,0 +1,84 @@
+<% if @active_stores.empty? %>
+<h4>There are no stores in the system at this time.</h4>
+<% else %>
+<h2> Active Stores owned by Cafe23 </h2>
+<table class="striped highlight">
+  <thead>
+    <th>Name</th>
+    <th>Current Assignments</th>
+    <th>Phone</th>
+    <th>Store.name</th>
+    <th>Store.id</th>
+    <th class="align_center">Options</th>
+  </thead>
+  <% for e in @active_stores %>
+    <tr>
+      <td><%= link_to "#{e.name}", store_path(e) %></td>
+      <td><%= number_to_phone e.phone %></td>
+      <td>
+      <% if e.assignments %>
+        <%= e.assignments %>
+      <% else %>
+      <p> n/a </p>
+      <% end %>
+    </td>
+      <td class="align_center">
+        <%= link_to edit_store_path(e) do %>
+            <i class="material-icons">edit</i>
+        <% end %>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <%= link_to(store_path(e), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+            <i class="material-icons">delete</i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<br />
+<%= will_paginate @active_stores, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>
+<p>&nbsp;</p>
+
+
+ 
+
+<% if @inactive_stores.empty? %>
+<h4>There are no inactive stores in the system at this time.</h4>
+<% else %>
+<h2> Inactive Stores </h2>
+<table class="striped highlight">
+  <thead>
+  <th>Name</th>
+  <th>Current Assignments</th>
+  <th>Phone</th>
+  <th>Store.name</th>
+  <th>Store.id</th>
+  <th class="align_center">Options</th>
+</thead>
+<% for e in @inactive_stores %>
+  <tr>
+    <td><%= link_to "#{e.name}", store_path(e) %></td>
+    <td><%= number_to_phone e.phone %></td>
+    <td>
+    <% if e.assignments %>
+      <%= e.assignments %>
+    <% else %>
+    <p> n/a </p>
+    <% end %>
+  </td>
+    <td class="align_center">
+      <%= link_to edit_store_path(e) do %>
+          <i class="material-icons">edit</i>
+      <% end %>
+      &nbsp;&nbsp;&nbsp;&nbsp; 
+      <%= link_to(store_path(e), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+          <i class="material-icons">delete</i>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= will_paginate @inactive_stores, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>
+<p>&nbsp;</p>

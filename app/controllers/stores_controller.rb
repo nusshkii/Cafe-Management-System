@@ -4,8 +4,8 @@ class StoresController < ApplicationController
     authorize_resource
   
     def index
-      @active_stores = Store.active.alphabetical
-      @inactive_stores = Store.inactive.alphabetical
+      @active_stores = Store.active.alphabetical.paginate(page: params[:active_page])
+      @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:inactive_page])
     end
   
     def show
