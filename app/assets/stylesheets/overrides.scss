@@ -10,14 +10,14 @@ html {
 
 /********** TOPBAR & NAV ********/
 #topbar {
-  background-color: #000000;
+  background-color: #bea2bb;
   padding-top: 5px;
   margin-bottom: 0px;
-  color: #FFCB05;
+  color: #1f1d12;
 }
 
 #topbar a {
-  color: #FFCB05;
+  color: #1f1d12;
 }
 
 #nav {
@@ -26,12 +26,12 @@ html {
 }
 
 #nav ul a {
-  color: #FFCB05;
+  color: #bea2bb;
   font-size: 1.2rem;
 }
 
 #query {
-  color: #ffffff;
+  color: #bdb2b8e5;
 }
 
 /********** FLASH MSGS ********/
@@ -59,13 +59,13 @@ html {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 0px;
-  color: yellow;
+  color: #bea2bb;
   line-height: 2rem;
   position: relative;
 }
 
 #footer a {
-  color: #FFCB05;
+  color: #bea2bb;
 }
 
 /********** TABLES ********/
@@ -74,11 +74,11 @@ table.striped > tbody > tr:nth-child(odd) {
 }
 
 table.striped > tbody > tr:nth-child(even) {
-  background-color: #fffde7;
+  background-color:#dda5eb;
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #fff59d;
+  background-color: #dda5eb;
 }
 
 td.align_right {
@@ -99,12 +99,12 @@ th.align_center {
 
 /********** BUTTONS ********/
 .btn {
-  background-color: #FFCB05;
+  background-color: #706872;
   color: #000;
 }
 
 .btn:hover {
-  background-color: #ffff00;
+  background-color: #694386;
   color: #000;
 }
 
@@ -129,15 +129,15 @@ th.align_center {
 
 /********** FORMS ********/
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #ffea00;
+  background-color: #daa7ed;
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
-  background-color: #FFCB05;
+  background-color: #c194dd;
 }
 
 .picker__date-display {
-  background-color: #FFCB05;
+  background-color: #cd98c9;
   color: #000;
 }
 
@@ -153,22 +153,22 @@ input[type=text].search {
 .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
   border-radius: 50%;
   transform: scale(0.9);
-  background-color: #FFCB05;
+  background-color: #d598da;
   color: #000;
 }
 
 .check_boxes.optional.filled-in {
-  background-color: #FFCB05;
+  background-color: #c894e0;
 }
 
 [type="checkbox"].filled-in:checked+label:after {
-  border: 2px solid #FFCB05;
-  background-color: #FFCB05;
+  border: 2px solid  #c894e0;
+  background-color:  #c894e0;
 }
 
 [type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
-  border: 2px solid #FFCB05;
-  background-color: #FFCB05;
+  border: 2px solid  #c894e0;
+  background-color:  #c894e0;
 }
 
 #form-template {
@@ -193,7 +193,7 @@ input[type=text].search {
 
 /********** CARDS ********/
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-  color: #ffab00;
+  color: #dda5eb;
 }
 
 .remove {
@@ -206,11 +206,11 @@ li.no_bullet {
 
 /********** TABS ********/
 .tabs .tab a.active {
-  color: #ffc400;
+  color:#dda5eb;
 }
 
 .tabs .tab a:hover {
-  color: #FFCB05;
+  color: #a736bd;
 }
 
 .tabs .tab a {
