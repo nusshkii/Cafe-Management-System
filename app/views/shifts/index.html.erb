@@ -1,0 +1,53 @@
+<% if current_user.admin_role? %>
+
+        <h2>Upcoming Shifts</h2>
+        <% if @shifts.upcoming.empty? %>
+            <p>There are no upcoming shifts in the system at this time.<p>
+        <% else %>
+            <table class="striped highlight">
+                <thead>
+                    <th>Assignment</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </thead>
+                <% for s in @shifts.upcoming %>
+                    <tr>
+                        <td><%= link_to "#{s.assignment.id}", assignment_path(s) %></td>
+                        <td><%= s.date %></td>
+                        <td><% s.start_time %></td>
+                        <td><% s.end_time %></td>
+                        <td><% s.status %></td>
+                        <td><% s.notes %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <% end %>
+        <h2>Completed Shifts</h2>
+        <% if @shifts.completed.empty? %>
+        <p>There are no completed shifts in the system at this time.<p>
+    <% else %>
+        <table class="striped highlight">
+            <thead>
+                <th>Assignment</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+                <th>Notes</th>
+            </thead>
+            <% for s in @shifts.completed %>
+                <tr>
+                    <td><%= link_to "#{s.assignment.id}", assignment_path(s) %></td>
+                    <td><%= s.date %></td>
+                    <td><% s.start_time %></td>
+                    <td><% s.end_time %></td>
+                    <td><% s.status %></td>
+                    <td><% s.notes %></td>
+                </tr>
+            <% end %>
+        </table>
+    <% end %>
+<% end %>

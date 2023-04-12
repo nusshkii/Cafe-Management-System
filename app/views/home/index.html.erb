@@ -2,3 +2,9 @@
   <h1>Welcome to the Cafe23 Management System</h1>
   <p>This is the main page of the Cafe23 Management System.</p>
 </div>
+
+<div class="col s4">
+   <% if current_user != nil && current_user.employee_role? %>
+    <li><%= link_to 'Upcoming Shifts', shifts_path %></li>
+   <% end %>
+</div>
