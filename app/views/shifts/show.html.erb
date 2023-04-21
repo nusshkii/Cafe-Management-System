@@ -1,0 +1,14 @@
+<div class="shift-details">
+  <h1>Shift Details</h1>
+  <p><strong>Start Time:</strong> <%= @shift.start_time.strftime("%I:%M %p") %></p>
+  <p><strong>End Time:</strong> <%= @shift.end_time.strftime("%I:%M %p") %></p>
+  <p><strong>Employee:</strong> <%= @shift.employee.proper_name %></p>
+  <p><strong>Shift Store:</strong> <%= @shift.store.name %></p>
+  <p><strong>Job(s):</strong> 
+  <% @shift.shift_jobs.each do |shift_job| %>
+      <p><%= shift_job.job.name %></p>
+  <% end %> 
+  <td>
+      <%= link_to "Add Job", new_shift_job_path(shift_id: @shift.id), class: "btn btn-primary" %>
+  </td>
+</div>

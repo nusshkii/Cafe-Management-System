@@ -1,53 +1,83 @@
-<% if current_user.admin_role? %>
-
-        <h2>Upcoming Shifts</h2>
-        <% if @shifts.upcoming.empty? %>
-            <p>There are no upcoming shifts in the system at this time.<p>
-        <% else %>
-            <table class="striped highlight">
-                <thead>
-                    <th>Assignment</th>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Status</th>
-                    <th>Notes</th>
-                </thead>
-                <% for s in @shifts.upcoming %>
-                    <tr>
-                        <td><%= link_to "#{s.assignment.id}", assignment_path(s) %></td>
-                        <td><%= s.date %></td>
-                        <td><% s.start_time %></td>
-                        <td><% s.end_time %></td>
-                        <td><% s.status %></td>
-                        <td><% s.notes %></td>
-                    </tr>
-                <% end %>
-            </table>
+<% if current_user.manager_role? || current_user.admin_role? %>
+    <h2>Upcoming Shifts</h2>
+    <% if @shifts.upcoming.empty? %>
+        <p>There are no upcoming shifts in the system at this time.<p>
+    <% else %>
+    <table class="striped highlight">
+        <thead>
+        <th>Shift</th>
+        <th>Employee</th>
+        <th>Assignment</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Status</th>
+        <th>Notes</th>
+        </thead>
+        <% for s in @shifts.upcoming %>
+            <% if s.status != 'finished' %>
+        <tr>
+            <td><%= link_to "#{s.id}", shift_path(s) %></td>
+            <td><%= link_to "#{s.assignment.employee.proper_name}", employee_path(s) %></td>
+            <td><%= link_to "#{s.assignment.id}", assignment_path(s) %></td>
+            <td><%= s.date %></td>
+            <td><%= s.start_time.strftime("%I:%M %p") %></td>
+            <td><%= s.end_time.strftime("%I:%M %p") %></td>
+            <td><%= s.status %></td>
+            <td><%= s.notes %></td>
+        </tr>
         <% end %>
-        <h2>Completed Shifts</h2>
-        <% if @shifts.completed.empty? %>
-        <p>There are no completed shifts in the system at this time.<p>
+        <% end %>
+    </table>
+    <% end %>
+
+    <h2>Completed Shifts</h2>
+    <% if @shifts.empty? %>
+    <p>There are no completed shifts in the system at this time.<p>
     <% else %>
         <table class="striped highlight">
             <thead>
+                <th>Shift</th>
+                <th>Employee</th>
                 <th>Assignment</th>
                 <th>Date</th>
                 <th>Start Time</th>
                 <th>End Time</th>
                 <th>Status</th>
                 <th>Notes</th>
+                <th>Add a New Job</th>
             </thead>
-            <% for s in @shifts.completed %>
+            <% for s in @shifts %>
+              <% if s.status == 'finished' %>
                 <tr>
+                    <td><%= link_to "#{s.id}", shift_path(s) %></td>
+                    <td><%= link_to "#{s.assignment.employee.proper_name}", employee_path(s) %></td>
                     <td><%= link_to "#{s.assignment.id}", assignment_path(s) %></td>
                     <td><%= s.date %></td>
-                    <td><% s.start_time %></td>
-                    <td><% s.end_time %></td>
-                    <td><% s.status %></td>
-                    <td><% s.notes %></td>
+                    <td><%= s.start_time.strftime("%I:%M %p") %></td>
+                    <td><%= s.end_time.strftime("%I:%M %p") %></td>
+                    <td><%= s.status %></td>
+                    <td><%= s.notes %></td>
+                    <td>
+                    <%= link_to "Add Job", new_shift_job_path(shift_id: s.id), class: "btn btn-sm btn-primary" %>
+                    </td>
                 </tr>
+              <% end %>
             <% end %>
         </table>
     <% end %>
+
+<%= link_to 'Add a New Shift For An Employee', new_shift_path, class: 'btn btn-primary' %>
+<% end %>
+
+<% if current_user.employee_role? %>
+<h2>Upcoming Shifts</h2>
+<% @shifts.upcoming each do |shift| %>
+  <div>
+    <p><%= shift.date %> <%= shift.start_time %> - <%= shift.end_time %></p>
+    <% if shift.date == Date.today && shift.status == 'pending' %>
+      <%= button_to 'Start Shift', time_in_shift_path(shift), method: :post %>
+    <% end %>
+  </div>
+<% end %>
 <% end %>

@@ -1,0 +1,38 @@
+<%= form_with model: @assignment, url: assignments_path do |f| %>
+    <% if @assignment.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@assignment.errors.count, "error") %> have stopped the assignment from being created:</h4>
+    
+        <ul>
+          <% @assignment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="field">
+    <%= f.label :employee_id %>
+    <%= f.collection_select :employee_id, Employee.where(role:'employee').all, :id, :proper_name %>
+    </div>
+  
+    <div class="field">
+    <%= f.label :store_id %>
+    <%= f.collection_select :store_id, Store.all, :id, :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :pay_grade_id %>
+        <%= f.collection_select :pay_grade_id, PayGrade.all, :id, :level %>
+    </div>
+
+    <div class="field">
+      <%= f.label :start_date %>
+      <%= f.date_field :start_date %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  

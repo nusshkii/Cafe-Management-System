@@ -1,0 +1,22 @@
+<h1>Calculate Payroll for Employee</h1>
+
+<%= form_tag({action: :employee_payroll}, method: :get) do %>
+
+  <div class="form-group">
+    <%= label_tag(:employee_id, "Employee:") %>
+    <%= select_tag(:employee_id, options_from_collection_for_select(Employee.all, 'id', 'proper_name')) %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag(:start_date, "Start Date:") %>
+    <%= text_field_tag(:start_date, nil, type: "date") %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag(:end_date, "End Date:") %>
+    <%= text_field_tag(:end_date, nil, type: "date") %>
+  </div>
+
+  <%= submit_tag("Calculate Payroll") %>
+
+<% end %>

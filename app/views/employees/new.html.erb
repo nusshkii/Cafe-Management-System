@@ -1,0 +1,78 @@
+<%= form_with model: @employee, url: employees_path do |form| %>
+    <% if @employee.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@employee.errors.count, "error") %> have stopped the employee from being created:</h4>
+    
+        <ul>
+          <% @employee.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="field">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :date_of_birth %>
+      <%= form.date_field :date_of_birth %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :username %>
+      <%= form.text_field :username %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :phone %>
+      <%= form.text_field :phone %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :ssn %>
+      <%= form.text_field :ssn %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :pay_grade_id %>
+      <%= form.select :pay_grade_id, PayGrade.all.map { |pg| [pg.level, pg.id] } %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :rate %>
+      <%= form.text_field :rate %>
+    </div>
+
+    <div class="field">
+      <%= form.label :active %>
+      <%= form.select :active, [ true, false ] %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :store_id %>
+      <%= form.select :store_id, Store.all.map { |s| [s.name, s.id] } %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  

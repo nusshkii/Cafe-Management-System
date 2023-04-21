@@ -3,7 +3,6 @@ class AssignmentsController < ApplicationController
     before_action :check_login
     authorize_resource
   
-  
     def index
       if current_user.admin_role?
         @current_assignments = Assignment.current.chronological.paginate(page: params[:page]).per_page(10)
@@ -16,6 +15,7 @@ class AssignmentsController < ApplicationController
     end
   
     def show
+
     end
   
     def new
@@ -23,6 +23,7 @@ class AssignmentsController < ApplicationController
     end
   
     def edit
+
     end
   
     def create
@@ -64,5 +65,5 @@ class AssignmentsController < ApplicationController
     def assignment_params
       params.require(:assignment).permit(:store_id, :employee_id, :start_date, :end_date, :pay_grade_id)
     end
-  end
-  
+
+end

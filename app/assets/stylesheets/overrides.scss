@@ -1,37 +1,32 @@
 html {
-  // Preloaded with several fonts; uncomment the one you prefer
-  // font-family: 'Helvetica Neue', sans-serif;
-  // font-family: 'Roboto', sans-serif;
-  // font-family: 'Georgia', serif;// font-family: 'Nunito', sans-serif;
-  // font-family: 'Bitter', serif;
-  font-family: 'Josefin Sans', sans-serif;
-  // font-family: 'Varela Round', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /********** TOPBAR & NAV ********/
 #topbar {
-  background-color: #bea2bb;
-  padding-top: 5px;
-  margin-bottom: 0px;
-  color: #1f1d12;
+  background-color: #333333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #FFFFFF;
 }
 
 #topbar a {
-  color: #1f1d12;
+  color: #FFFFFF;
 }
 
 #nav {
-  background-color: #000;
-  height: 50px;
+  background-color: #FFFFFF;
+  height: 60px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 
 #nav ul a {
-  color: #bea2bb;
+  color: #333333;
   font-size: 1.2rem;
 }
 
 #query {
-  color: #bdb2b8e5;
+  color: #999999;
 }
 
 /********** FLASH MSGS ********/
@@ -52,33 +47,31 @@ html {
   color: #800000;
 }
 
-/********** FOOTER ********/
 
+/********** FOOTER ********/
 #footer {
-  background-color: #000000;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 0px;
-  color: #bea2bb;
-  line-height: 2rem;
-  position: relative;
+  background-color: #333333;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #FFFFFF;
+  text-align: center;
 }
 
 #footer a {
-  color: #bea2bb;
+  color: #FFFFFF;
 }
 
 /********** TABLES ********/
 table.striped > tbody > tr:nth-child(odd) {
-  background-color: #fff;
+  background-color: #F5F5F5;
 }
 
 table.striped > tbody > tr:nth-child(even) {
-  background-color:#dda5eb;
+  background-color: #FFFFFF;
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #dda5eb;
+  background-color: #d2ebf4;
 }
 
 td.align_right {
@@ -99,109 +92,186 @@ th.align_center {
 
 /********** BUTTONS ********/
 .btn {
-  background-color: #706872;
-  color: #000;
+  background-color: #333333;
+  color: #FFFFFF;
 }
 
 .btn:hover {
-  background-color: #694386;
-  color: #000;
+  background-color: #dae9f5;
 }
 
 .btn-secondary {
-  background-color: #eceff1;
-  color: #000;
+  background-color: #F5F5F5;
+  color: #333333;
 }
 
 .btn-secondary:hover {
-  background-color: #cfd8dc;
-  color: #000;
+  background-color: #E0E0E0;
 }
 
 .btn-alert {
-  background-color: #c62828;
-  color: #fff;
+  background-color: #E53935;
+  color: #FFFFFF;
 }
+
 .btn-alert:hover {
-  background-color: #e53935;
-  color: #fff;
+  background-color: #C62828;
 }
 
 /********** FORMS ********/
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #daa7ed;
+  background-color: #F48FB1;
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
-  background-color: #c194dd;
+  background-color: #E57373;
 }
 
 .picker__date-display {
-  background-color: #cd98c9;
-  color: #000;
+  background-color: #e4e0e5;
+  color: #FFFFFF;
 }
 
 .picker__year-display {
-  color: #000;
+  color: #FFFFFF;
 }
 
 input[type=text].search {
-  border-bottom: none;
-  margin-left: 10px;
+  border: 1px solid #CCCCCC;
+  padding: 10px;
 }
 
 .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
   border-radius: 50%;
   transform: scale(0.9);
-  background-color: #d598da;
-  color: #000;
+  background-color: #c8e4e8ac;
+  color: #FFFFFF;
 }
 
 .check_boxes.optional.filled-in {
-  background-color: #c894e0;
+  background-color: #F5F5F5;
 }
 
-[type="checkbox"].filled-in:checked+label:after {
-  border: 2px solid  #c894e0;
-  background-color:  #c894e0;
+// Footer
+.footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    a {
+      color: #666;
+      font-size: 14px;
+      margin-right: 20px;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    text-align: center;
+  }
 }
 
-[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
-  border: 2px solid  #c894e0;
-  background-color:  #c894e0;
+// Forms
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+
+    &:focus {
+      border-color: #555;
+    }
+  }
+
+  select {
+    height: 40px;
+  }
+
+  .checkbox {
+    margin-top: 10px;
+
+    label {
+      font-weight: normal;
+
+      input {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #555;
+      color: #fff;
+    }
+
+    &.primary {
+      background-color: #428bca;
+      color: #fff;
+    }
+  }
 }
 
-#form-template {
-  padding-left: 20px;
-}
+// Alerts
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 16px;
+
+  &.success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+  }
+
+  &.warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+  }
+
+  &.danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+  }
+
+  &.info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+  }
 
 
-/********** MEDIA ********/
-.img_left {
-  float: left;
-  padding-right: 10px;
-}
-
-.img_right {
-  float: right;
-  padding-left: 10px;
-}
-
-.carousel {
-  height: 250px;
-}
-
-/********** CARDS ********/
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-  color: #dda5eb;
-}
-
-.remove {
-  color: #b71c1c;
-}
-
-li.no_bullet {
-  list-style-type: none;
 }
 
 /********** TABS ********/
@@ -210,7 +280,7 @@ li.no_bullet {
 }
 
 .tabs .tab a:hover {
-  color: #a736bd;
+  color: #e1afeb;
 }
 
 .tabs .tab a {

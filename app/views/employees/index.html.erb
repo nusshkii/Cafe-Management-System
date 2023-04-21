@@ -1,82 +1,95 @@
-
- 
-
 <% if @active_employees.empty? %>
-<h4>There are no employees in the system at this time.</h4>
+  <h4>There are no employees in the system at this time.</h4>
 <% else %>
-<h2> Active Employees at Cafe23 </h2>
-<table class="striped highlight">
-  <thead>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Current Assignment</th>
-    <th class="align_center">Options</th>
-  </thead>
-  <% for e in @active_employees %>
-    <tr>
-      <td><%= link_to "#{e.last_name}, #{e.first_name}", employee_path(e) %></td>
-      <td><%= number_to_phone e.phone %></td>
-      <td>
-      <% if e.current_assignment %>
-        <%= e.current_assignment.store.name %>
-      <% else %>
-      <p> n/a </p>
+  <h2> Active Employees at Cafe23 </h2>
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Current Assignment at Store</th>
+      <th>Current Store</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% @active_employees.each_slice(10) do |employees| %>
+      <% employees.each do |e| %>
+        <tr>
+          <td><%= link_to "#{e.last_name}, #{e.first_name}", employee_path(e) %></td>
+          <td><%= number_to_phone e.phone %></td>
+          <td>
+            <% if e.current_assignment %>
+              <%= e.current_assignment.store.name %>
+            <% else %>
+              <p> n/a </p>
+            <% end %>
+            <td><%= e&.assignments&.first&.store&.name %></td>
+          </td>
+          <td class="align_center">
+            <%= link_to edit_employee_path(e) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            <%= link_to(employee_path(e), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                <i class="material-icons">delete</i>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </td>
-      <td class="align_center">
-        <%= link_to edit_employee_path(e) do %>
-            <i class="material-icons">edit</i>
-        <% end %>
-        &nbsp;&nbsp;&nbsp;&nbsp; 
-        <%= link_to(employee_path(e), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
-            <i class="material-icons">delete</i>
-        <% end %>
-      </td>
-    </tr>
+    <% end %>
+  </table>
+  <% if @active_employees.size > 10 %>
+    <div class="pagination">
+      <% (1..(@active_employees.size/10.0).ceil).each do |page| %>
+        <%= link_to page, employees_path(page: page), class: ('active' if params[:page].to_i == page) %>
+      <% end %>
+    </div>
   <% end %>
-</table>
-<br />
 <% end %>
+
 <p>&nbsp;</p>
-
-
- 
 
 <% if @inactive_employees.empty? %>
-<h4>There are no inactive employees in the system at this time.</h4>
+  <h4>There are no inactive employees in the system at this time.</h4>
 <% else %>
-<h2> Inactive Employees at Cafe23 </h2>
-<table class="striped highlight">
-  <thead>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Current Assignment</th>
-    <th class="align_center">Options</th>
-  </thead>
-  <% for e in @inactive_employees %>
-    <tr>
-      <td><%= link_to "#{e.last_name}, #{e.first_name}", employee_path(e) %></td>
-      <td><%= number_to_phone e.phone %></td>
-      <td>
-      <% if e.current_assignment %>
-        <%= e.current_assignment.store.name %>
-      <% else %>
-      <p> n/a </p>
+  <h2> Inactive Employees at Cafe23 </h2>
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Current Assignment</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% @inactive_employees.each_slice(10) do |employees| %>
+      <% employees.each do |e| %>
+        <tr>
+          <td><%= link_to "#{e.last_name}, #{e.first_name}", employee_path(e) %></td>
+          <td><%= number_to_phone e.phone %></td>
+          <td>
+            <% if e.current_assignment %>
+              <%= e.current_assignment.store.name %>
+            <% else %>
+              <p> n/a </p>
+            <% end %>
+          </td>
+          <td class="align_center">
+            <%= link_to edit_employee_path(e) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            <%= link_to(employee_path(e), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                <i class="material-icons">delete</i>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </td>
-      <td class="align_center">
-        <%= link_to edit_employee_path(e) do %>
-            <i class="material-icons">edit</i>
-        <% end %>
-        &nbsp;&nbsp;&nbsp;&nbsp; 
-        <%= link_to(employee_path(e), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
-            <i class="material-icons">delete</i>
-        <% end %>
-      </td>
-    </tr>
+    <% end %>
+  </table>
+  <% if @inactive_employees.size > 10 %>
+    <div class="pagination">
+      <% (1..(@inactive_employees.size/10.0).ceil).each do |page| %>
+        <%= link_to page, employees_path(page: page), class: ('active' if params[:page].to_i == page) %>
+      <% end %>
+    </div>
   <% end %>
-</table>
-<br />
-<%= will_paginate @inactive_employees, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
-<p>&nbsp;</p>
+
+<%= link_to 'Add a New Employee', new_employee_path, class: 'btn btn-primary' %>

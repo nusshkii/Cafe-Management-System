@@ -6,7 +6,7 @@ class StoresController < ApplicationController
     def index
       @active_stores = Store.active.alphabetical.paginate(page: params[:active_page])
       @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:inactive_page])
-    end
+    end    
   
     def show
       @current_employees = @store.employees.alphabetical
@@ -26,6 +26,7 @@ class StoresController < ApplicationController
     end
   
     def edit
+        
     end
   
     def update
@@ -45,4 +46,5 @@ class StoresController < ApplicationController
     def store_params
       params.require(:store).permit(:name, :street, :city, :state, :zip, :phone, :active)
     end
-  end
+
+end

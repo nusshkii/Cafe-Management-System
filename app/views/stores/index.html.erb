@@ -7,21 +7,25 @@
     <th>Name</th>
     <th>Current Assignments</th>
     <th>Phone</th>
-    <th>Store.name</th>
-    <th>Store.id</th>
+    <th>Store Name</th>
     <th class="align_center">Options</th>
   </thead>
   <% for e in @active_stores %>
     <tr>
       <td><%= link_to "#{e.name}", store_path(e) %></td>
-      <td><%= number_to_phone e.phone %></td>
       <td>
-      <% if e.assignments %>
-        <%= e.assignments %>
-      <% else %>
-      <p> n/a </p>
-      <% end %>
-    </td>
+        <% e.assignments.each do |assignment| %>
+          <%= link_to assignment.id, assignment_path(assignment) %><br>
+        <% end %>
+      </td>
+      <td>
+        <% if e.phone %>
+          <%= number_to_phone e.phone %>
+        <% else %>
+          <p> n/a </p>
+        <% end %>
+      </td>
+      <td><%= e.name %></td>
       <td class="align_center">
         <%= link_to edit_store_path(e) do %>
             <i class="material-icons">edit</i>
@@ -34,13 +38,12 @@
     </tr>
   <% end %>
 </table>
+
 <br />
 <%= will_paginate @active_stores, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
 <p>&nbsp;</p>
 
-
- 
 
 <% if @inactive_stores.empty? %>
 <h4>There are no inactive stores in the system at this time.</h4>
@@ -49,22 +52,20 @@
 <table class="striped highlight">
   <thead>
   <th>Name</th>
-  <th>Current Assignments</th>
   <th>Phone</th>
-  <th>Store.name</th>
-  <th>Store.id</th>
+  <th>Store Name</th>
   <th class="align_center">Options</th>
 </thead>
 <% for e in @inactive_stores %>
   <tr>
     <td><%= link_to "#{e.name}", store_path(e) %></td>
-    <td><%= number_to_phone e.phone %></td>
     <td>
-    <% if e.assignments %>
-      <%= e.assignments %>
+    <% if e.phone %>
+      <%= number_to_phone e.phone %>
     <% else %>
     <p> n/a </p>
     <% end %>
+    <td><%= e.name %></td>
   </td>
     <td class="align_center">
       <%= link_to edit_store_path(e) do %>

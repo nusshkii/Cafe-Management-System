@@ -1,10 +1,34 @@
 <div id="main_content">
   <h1>Welcome to the Cafe23 Management System</h1>
   <p>This is the main page of the Cafe23 Management System.</p>
+
+  <% if current_user && current_user.employee_role? %>
+    <% upcoming_shifts = current_user.shifts.upcoming %>
+    <% if upcoming_shifts.any? %>
+      <h3>Upcoming Shifts:</h3>
+      <ul>
+        <% upcoming_shifts.each do |shift| %>
+          <li><%= shift.date.strftime("%A, %B %d") %> - <%= shift.start_time.strftime("%I:%M %p") %> to <%= shift.end_time.strftime("%I:%M %p") %></li>
+
+          <% if shift.date == Date.today %>
+            <% if shift.status != "finished" %>
+              <%= link_to 'Start Shift', time_in_path(shift), method: :patch, id: "start-shift-button", class: 'btn btn-primary' %>
+            
+              <%= link_to 'End Shift', time_out_path(shift), method: :patch, id: "end-shift-button", class: 'btn btn-primary' %>
+              <% end %>
+              <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You don't have any upcoming shifts.</p>
+    <% end %>
+  <% end %>
 </div>
 
-<div class="col s4">
-   <% if current_user != nil && current_user.employee_role? %>
-    <li><%= link_to 'Upcoming Shifts', shifts_path %></li>
-   <% end %>
-</div>
+<% if current_user && current_user.manager_role? || current_user && current_user.admin_role?  %>
+  <%= link_to 'Store Payroll', store_form_path, class: 'btn btn-primary' %>
+<% end %>
+
+<% if current_user && current_user.admin_role?  %>
+  <%= link_to 'Employee Payroll', employee_form_path, class: 'btn btn-primary' %>
+<% end %>

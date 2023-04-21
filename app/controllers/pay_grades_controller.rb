@@ -54,4 +54,5 @@ class PayGradesController < ApplicationController
     def pay_grade_params
       params.require(:pay_grade).permit(:level, :active)
     end
-  end
+    
+end

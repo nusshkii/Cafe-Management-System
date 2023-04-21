@@ -1,0 +1,25 @@
+<h4>Payroll for <%= @employee.proper_name %> (<%= @date_range.start_date.to_formatted_s(:long) %> to <%= @date_range.end_date.to_formatted_s(:long) %>)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>SSN</th>
+      <th>Pay Grade</th>
+      <th>Rate</th>
+      <th>Hours Worked</th>
+      <th>Earnings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td><%= @employee_payroll.employee_name %></td>
+      <td><%= @employee_payroll.ssn %></td>
+      <td><%= @employee_payroll.pay_grade %></td>
+      <td><%= @employee_payroll.pay_rate %></td>
+      <td><%= @employee_payroll.hours %></td>
+      <td><%= @employee_payroll.pay_earned %></td>
+    </tr>
+  </tbody>
+</table>

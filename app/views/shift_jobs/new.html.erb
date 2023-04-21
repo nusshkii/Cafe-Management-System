@@ -1,0 +1,24 @@
+<%= form_with(model: @shift_job) do |form| %>
+  <% if @shift_job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shift_job.errors.count, "error") %> prohibited this shift_job from being saved:</h2>
+
+      <ul>
+        <% @shift_job.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :shift_id, value: params[:shift_id] %>
+
+  <div class="field">
+    <%= form.label :job_id %>
+    <%= form.collection_select :job_id, Job.active.all, :id, :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

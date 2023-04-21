@@ -1,0 +1,41 @@
+<h1>Calculate Payroll for Store</h1>
+
+<%= form_tag({action: :store_payroll}, method: :get) do %>
+
+    <% if current_user && current_user.admin_role? %>
+      <div class="form-group">
+        <%= label_tag(:store_id, "Store:") %>
+        <%= select_tag(:store_id, options_from_collection_for_select(Store.all, 'id', 'name')) %>
+      </div>
+
+      <div class="form-group">
+      <%= label_tag(:start_date, "Start Date:") %>
+      <%= text_field_tag(:start_date, nil, type: "date") %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag(:end_date, "End Date:") %>
+      <%= text_field_tag(:end_date, nil, type: "date") %>
+    </div>
+
+      <%= submit_tag("Calculate Payroll") %>
+
+      <% end %>
+
+  <% if current_user && current_user.manager_role? %>
+
+    <div class="form-group">
+    <%= label_tag(:start_date, "Start Date:") %>
+    <%= text_field_tag(:start_date, nil, type: "date") %>
+    </div>
+
+   <div class="form-group">
+      <%= label_tag(:end_date, "End Date:") %>
+      <%= text_field_tag(:end_date, nil, type: "date") %>
+    </div>
+
+    <%= submit_tag("Calculate Payroll") %>
+
+    <% end %>
+
+<% end %>

@@ -1,0 +1,10 @@
+.shift-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 5px solid rgb(233, 184, 227);
+    padding: 95px;
+    border-radius: 100px;
+  }
+  

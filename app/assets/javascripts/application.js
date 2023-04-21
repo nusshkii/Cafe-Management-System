@@ -55,3 +55,4 @@ $('.dropdown-trigger').dropdown();
 $(document).ready(function(){
   $('.timepicker').timepicker();
 });
+
