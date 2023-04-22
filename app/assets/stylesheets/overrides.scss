@@ -113,10 +113,24 @@ th.align_center {
 }
 
 /********** BUTTONS ********/
+
+// .btn {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: absolute;
+//   top: 70%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   }
+
+
 .btn {
   background-color: #333333;
   color: #FFFFFF;
+  
 }
+  
 
 .btn:hover {
   background-color: #dae9f5;
@@ -125,6 +139,8 @@ th.align_center {
 .btn-secondary {
   background-color: #F5F5F5;
   color: #333333;
+  top: 70%;
+  left: 50%;
 }
 
 .btn-secondary:hover {

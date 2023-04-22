@@ -1,3 +1,70 @@
+<style>
+body {
+  background-image: url('/assets/pic5.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  /* Set background color with 80% opacity */
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.form-container {
+  margin: 50px auto 0;
+  width: 50%;
+  padding: 10px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+  h3 {
+    text-align: center;
+    color: white;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+  }
+
+  input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+  }
+
+  select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0069D9;
+  }
+</style>
+
 <div class="form-container">
 <%= form_with(model: @shift, local: true) do |form| %>
     <% if @shift.errors.any? %>
