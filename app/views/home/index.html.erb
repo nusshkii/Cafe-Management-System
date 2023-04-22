@@ -1,29 +1,98 @@
 <div id="main_content">
-  <h1>Welcome to the Cafe23 Management System</h1>
-  <p>This is the main page of the Cafe23 Management System.</p>
-
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <style>
+        /* Add styles to the background image */
+        body {
+          background-image: url('/assets/pic5.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          font-family: Arial, sans-serif;
+          color: #ffffff;
+          /* Set background color with 80% opacity */
+          background-color: rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Center align the login form */
+        #login-form {
+          margin: 0 auto;
+          width: 400px;
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 20px;
+          border-radius: 10px;
+        }
+        
+        /* Style the input fields */
+        input[type="text"],
+        input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          margin: 5px 0;
+          box-sizing: border-box;
+          border: none;
+          border-radius: 4px;
+          font-size: 16px;
+        }
+        
+        /* Style the login button */
+        input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          width: 100%;
+          font-size: 16px;
+        }
+  
+        #login-link {
+          display: block;
+          margin: 0 auto;
+          width: 200px;
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+          text-decoration: none;
+          color: #ffffff;
+          font-size: 16px;
+        }
+        
+        /* Style the login button on hover */
+        input[type="submit"]:hover {
+          background-color: #45a049;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Welcome to the management system of Cafe23</h1>
+        <%= link_to 'Login', login_path, id: 'login-link' %>
+        </form>
+      </div>
+    </body>
+  </html>
+  
   <% if current_user && current_user.employee_role? %>
-    <% upcoming_shifts = current_user.shifts.upcoming %>
-    <% if upcoming_shifts.any? %>
-      <h3>Upcoming Shifts:</h3>
-      <ul>
-        <% upcoming_shifts.each do |shift| %>
-          <li><%= shift.date.strftime("%A, %B %d") %> - <%= shift.start_time.strftime("%I:%M %p") %> to <%= shift.end_time.strftime("%I:%M %p") %></li>
-
-          <% if shift.date == Date.today %>
-            <% if shift.status != "finished" %>
-              <%= link_to 'Start Shift', time_in_path(shift), method: :patch, id: "start-shift-button", class: 'btn btn-primary' %>
-            
-              <%= link_to 'End Shift', time_out_path(shift), method: :patch, id: "end-shift-button", class: 'btn btn-primary' %>
-              <% end %>
-              <% end %>
+  <% upcoming_shifts = current_user.shifts.upcoming.order(date: :asc, start_time: :asc, end_time: :asc) %>
+  <% if upcoming_shifts.any? %>
+    <h3>Upcoming Shifts:</h3>
+    <ul>
+      <% upcoming_shifts.each do |shift| %>
+        <li><%= shift.date.strftime("%A, %B %d") %> - <%= shift.start_time.strftime("%I:%M %p") %> to <%= shift.end_time.strftime("%I:%M %p") %></li>
+        <% if shift.date == Date.today && shift.status == "pending" %>
+          <%= link_to 'Start Shift', time_in_path(shift), method: :patch, id: "start-shift-button", class: 'btn btn-primary' %>
+        <% elsif shift.date == Date.today && shift.status == "started" %>
+          <%= link_to 'End Shift', time_out_path(shift), method: :patch, id: "end-shift-button", class: 'btn btn-primary' %>
         <% end %>
-      </ul>
-    <% else %>
-      <p>You don't have any upcoming shifts.</p>
-    <% end %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You don't have any upcoming shifts.</p>
   <% end %>
-</div>
+<% end %>
 
 <% if current_user && current_user.manager_role? || current_user && current_user.admin_role?  %>
   <%= link_to 'Store Payroll', store_form_path, class: 'btn btn-primary' %>
@@ -32,3 +101,4 @@
 <% if current_user && current_user.admin_role?  %>
   <%= link_to 'Employee Payroll', employee_form_path, class: 'btn btn-primary' %>
 <% end %>
+</div>

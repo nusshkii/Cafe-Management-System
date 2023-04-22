@@ -29,6 +29,28 @@ html {
   color: #999999;
 }
 
+.centered {
+  text-align: center;
+}
+
+.carousel {
+  height: 250px;
+}
+
+.payroll-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('assets/pic5.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.form-group label {
+  color: black;
+}
 /********** FLASH MSGS ********/
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;

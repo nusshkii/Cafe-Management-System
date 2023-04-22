@@ -1,3 +1,4 @@
+<div class="form-container">
 <%= form_with(model: @shift, local: true) do |form| %>
     <% if @shift.errors.any? %>
       <div id="error_explanation">
@@ -17,8 +18,8 @@
     </div>
 
     <div class="field">
-      <%= form.label :assignment_id %>
-      <%= form.collection_select :assignment_id, Assignment.current.all, :id, :id %>
+      <%= form.label :assignment_id, "Assignment (associated with employee)" %>
+      <%= form.collection_select :assignment_id, Assignment.current.map { |a| [a.employee.proper_name, a.id] }, :last, :first, prompt: true %>
     </div>
   
     <div class="field">
@@ -40,4 +41,5 @@
       <%= form.submit %>
     </div>
 <% end %>
-  
+
+</div>
