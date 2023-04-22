@@ -38,6 +38,10 @@ $(function() {
    });
 });
 
+// Carousel function
+$(document).ready(function(){
+  $('.carousel').carousel();
+});
 
 // Search submit on enter
 $(document).ready(function() {

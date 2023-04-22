@@ -1,0 +1,37 @@
+<style>
+h3 {
+  text-align: center;
+  color: black;
+}
+</style>
+
+<h3>Current Jobs</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= job.name %></td>
+        <td><%= job.description %></td>
+        <td><%= job.active ? 'Yes' : 'No' %></td>
+        <td><%= link_to 'Edit', edit_job_path(job) %></td>
+        <td><%= link_to 'Delete', job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<br/>
+
+<%= link_to 'Create a New Job', new_job_path, class: 'btn btn-primary' %>
